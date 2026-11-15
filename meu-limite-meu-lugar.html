@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Meu limite, meu lugar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--forte:#5E7E5F;--claro:#E3EADF;--fundo:#FBF8F3;--texto:#2E2B27;--suave:#77706A;--linha:#ECE4D6;--quente:#C07A5A}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--fundo);color:var(--texto);font:16px/1.6 'Nunito Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+textarea,input{font:inherit}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12}
+
+.casca{max-width:600px;margin:0 auto;padding:0 16px 48px}
+.barra{position:sticky;top:0;z-index:5;background:rgba(251,248,243,.95);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:12px 0}
+.barra-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12.5px;font-weight:800;color:var(--suave)}
+.trilho{height:6px;border-radius:6px;background:var(--linha);overflow:hidden;margin-top:8px}
+.trilho i{display:block;height:100%;background:var(--forte);transform-origin:left;transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+
+.capa{margin-top:16px;border-radius:24px;background:var(--claro);color:var(--forte);text-align:center;padding:32px 24px;animation:entra .6s ease both}
+.capa .ilus{width:140px;height:140px;margin:0 auto 8px}
+.capa small{font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase}
+.capa h1{font-size:40px;margin:8px 0}
+.capa .pub{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;margin-bottom:8px}
+.capa p{font-size:14px;opacity:.85}
+.cita{background:#fff;border:1px solid var(--linha);border-radius:16px;padding:16px;margin-top:16px;font-size:15.5px}
+.cita q{display:block;font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;color:var(--forte);margin-top:8px}
+.texto-abre{margin-top:16px;font-size:16.5px}
+.como{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.como div{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:12px;text-align:center;font-size:13px;color:var(--suave)}
+.como b{display:block;font-size:20px;line-height:1.2;color:var(--forte);font-family:'Cormorant Garamond',serif;white-space:nowrap}
+
+.cartao{margin-top:16px;background:#fff;border:1px solid var(--linha);border-radius:24px;padding:24px 20px;box-shadow:0 18px 40px -28px rgba(60,45,30,.5);animation:entra .45s ease both}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.etiqueta{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--claro);color:var(--forte);border-radius:999px;padding:4px 12px}
+.trans{font-style:italic;color:var(--suave);margin-top:12px;font-size:15px}
+.cartao h2{font-size:30px;margin:12px 0 8px}
+.cartao .intro{color:var(--suave)}
+.frase-t{border-left:3px solid var(--forte);padding:8px 0 8px 16px;margin-top:16px;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic}
+.frase-t span{display:block;font-family:'Nunito Sans',sans-serif;font-style:normal;font-size:12.5px;font-weight:800;color:var(--forte);margin-top:4px}
+
+.bloco{margin-top:24px;padding-top:24px;border-top:1px dashed var(--linha)}
+.bloco h3{font-size:23px;color:var(--texto)}
+.bloco .dica{font-size:14px;color:var(--suave);margin-top:4px}
+
+/* escala */
+.escala{margin-top:16px}
+.valor{display:flex;align-items:baseline;justify-content:center;gap:6px;color:var(--forte)}
+.valor b{font-family:'Cormorant Garamond',serif;font-size:52px;line-height:1;transition:transform .2s}
+.valor span{font-size:14px;color:var(--suave)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin-top:8px;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:10px;background:linear-gradient(90deg,var(--forte) var(--p,50%),var(--linha) var(--p,50%))}
+input[type=range]::-moz-range-track{height:10px;border-radius:10px;background:var(--linha)}
+input[type=range]::-moz-range-progress{height:10px;border-radius:10px;background:var(--forte)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid var(--forte);margin-top:-11px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid var(--forte)}
+input[type=range]:focus-visible{outline:2px solid var(--forte);outline-offset:4px;border-radius:12px}
+.pontas{display:flex;justify-content:space-between;font-size:13px;color:var(--suave);font-weight:700}
+.termo{height:8px;border-radius:8px;background:var(--linha);margin-top:12px;overflow:hidden}
+.termo i{display:block;height:100%;width:50%;border-radius:8px;background:linear-gradient(90deg,var(--claro),var(--quente));transition:width .3s ease}
+.nao-mexeu .valor b{opacity:.35}
+
+/* opções (sentimentos, práticas, compromissos) */
+.opcoes{display:grid;gap:12px;margin-top:16px}
+.opcoes.quatro{grid-template-columns:repeat(2,1fr)}
+.op{display:flex;align-items:center;gap:12px;text-align:left;border:1.5px solid var(--linha);border-radius:16px;padding:16px;background:var(--fundo);min-height:64px;transition:border-color .2s,background .2s,transform .2s}
+.op:hover{border-color:var(--forte)}
+.op:active{transform:scale(.98)}
+.op .ic{flex:0 0 40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;color:var(--forte)}
+.op .ic svg{width:22px;height:22px}
+.op b{display:block;font-size:15.5px}
+.op small{display:block;font-size:13.5px;color:var(--suave);margin-top:2px}
+.op.sel{border-color:var(--forte);background:var(--claro)}
+.op.sel .ic{background:var(--forte);color:#fff}
+.quatro .op{flex-direction:column;justify-content:center;text-align:center;padding:16px 8px}
+
+/* frases para marcar */
+.frases{display:grid;gap:12px;margin-top:16px}
+.fr{display:flex;align-items:center;gap:12px;text-align:left;border:1.5px solid var(--linha);border-radius:16px;padding:16px;background:var(--fundo);min-height:60px;font-size:15.5px;transition:border-color .2s,background .2s}
+.fr .ck{flex:0 0 26px;height:26px;border-radius:8px;border:2px solid var(--linha);background:#fff;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.fr .ck svg{width:16px;height:16px;opacity:0;color:#fff;transition:opacity .2s}
+.fr.sel{border-color:var(--forte);background:var(--claro)}
+.fr.sel .ck{background:var(--forte);border-color:var(--forte)}
+.fr.sel .ck svg{opacity:1}
+.contador{margin-top:12px;font-size:13.5px;font-weight:800;color:var(--forte)}
+
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.seg button{border:1.5px solid var(--linha);border-radius:14px;padding:12px 8px;font-weight:800;font-size:14px;background:var(--fundo);min-height:48px}
+.seg button.sel{border-color:var(--forte);background:var(--forte);color:#fff}
+
+/* perguntas abertas */
+.itens{display:grid;gap:16px;margin-top:16px}
+.item label{display:block;font-weight:700;font-size:15px;margin-bottom:8px}
+.item textarea{width:100%;min-height:88px;border:1px solid var(--linha);border-radius:14px;padding:12px;font-size:16px;resize:vertical;background:var(--fundo)}
+.item textarea:focus{outline:2px solid var(--forte);outline-offset:1px;border-color:transparent;background:#fff}
+.passo{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border:1px solid var(--linha);border-radius:14px;cursor:pointer;min-height:56px;background:var(--fundo)}
+.passo input{width:22px;height:22px;margin-top:2px;accent-color:var(--forte);flex:0 0 22px}
+.passo.feito{background:var(--claro)}
+.salvo{font-size:12px;color:var(--suave);margin-top:12px;min-height:18px}
+
+.nav{display:flex;gap:12px;margin-top:24px}
+.btn{flex:1;min-height:52px;border-radius:999px;background:var(--forte);color:#fff;font-weight:800;font-size:15.5px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:12px 24px;transition:transform .2s,filter .2s}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:scale(.97)}
+.btn.claro{background:#fff;color:var(--forte);border:1.5px solid var(--forte);flex:0 0 auto}
+.btn.desligado{opacity:.45;cursor:not-allowed;filter:grayscale(.3)}
+.nota-teste{display:block;text-align:center;font-size:12.5px;color:var(--suave);margin-top:8px}
+
+/* resultado */
+.res-cab{text-align:center;margin-top:16px;animation:entra .5s ease both}
+.res-cab .ilus{width:96px;height:96px;margin:0 auto}
+.res-cab small{font-size:11.5px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:var(--forte)}
+.res-cab h1{font-size:38px;margin:8px 0}
+.res-cab p{color:var(--suave);max-width:480px;margin:0 auto}
+.dims{display:grid;gap:16px;margin-top:24px}
+.dim{background:#fff;border:1px solid var(--linha);border-radius:20px;padding:20px;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;animation:entra .5s ease both}
+.dim:nth-child(2){animation-delay:.12s}.dim:nth-child(3){animation-delay:.24s}
+.anel{position:relative;width:96px;height:96px}
+.anel svg{width:96px;height:96px;transform:rotate(-90deg)}
+.anel .fundo{stroke:var(--linha)}
+.anel .arco{stroke:var(--forte);stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.2,.9,.3,1)}
+.anel.peso .arco{stroke:var(--quente)}
+.anel b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--texto)}
+.dim h3{font-size:22px}
+.faixa{display:inline-block;margin-top:4px;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 10px;background:var(--claro);color:var(--forte)}
+.dim p{font-size:15px;color:var(--suave);margin-top:8px}
+.caixa{margin-top:16px;background:#fff;border:1px solid var(--linha);border-radius:20px;padding:20px}
+.caixa h3{font-size:22px}
+.caixa .lin{display:flex;gap:12px;align-items:flex-start;margin-top:12px;font-size:15px}
+.caixa .lin span{flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--forte);background:var(--claro);border-radius:999px;padding:3px 10px;margin-top:2px}
+.passo-semana{background:var(--forte);color:#fff;border-color:var(--forte)}
+.passo-semana h3{color:#fff}
+.passo-semana p{margin-top:8px;font-size:16px}
+.escreveu dl{margin-top:8px}
+.escreveu dt{font-weight:700;font-size:14.5px;margin-top:12px}
+.escreveu dd{font-size:15px;color:var(--suave);margin-top:4px;padding-left:12px;border-left:2px solid var(--linha)}
+.fecha{text-align:center;color:var(--suave);margin-top:24px;font-style:italic}
+.acoes-res{display:grid;gap:12px;margin-top:24px}
+
+.aviso-legal{font-size:12.5px;color:var(--suave);text-align:center;margin-top:24px;padding:0 8px}
+.assina{text-align:center;font-size:12.5px;color:var(--suave);margin-top:8px}
+.erro{margin:30vh auto 0;text-align:center;color:var(--suave)}
+
+@media (min-width:860px){
+  .casca{max-width:760px;padding:0 32px 64px}
+  .barra{padding:16px 0}
+  .capa{padding:48px 40px}
+  .capa h1{font-size:48px}
+  .cartao{padding:40px 48px;border-radius:28px}
+  .cartao h2{font-size:34px}
+  .opcoes.quatro{grid-template-columns:repeat(4,1fr)}
+  .opcoes.tres{grid-template-columns:repeat(3,1fr)}
+  .opcoes.tres .op{flex-direction:column;align-items:flex-start;padding:20px}
+  .frases{grid-template-columns:1fr 1fr}
+  .dims{grid-template-columns:repeat(3,1fr)}
+  .dim{grid-template-columns:1fr;text-align:center;justify-items:center;align-items:start;align-content:start;padding:24px}
+  .dim h3{min-height:2.3em;display:flex;align-items:center;justify-content:center}
+  .acoes-res{grid-template-columns:1fr auto auto}
+}
+@media print{
+  @page{size:A4;margin:14mm 14mm 16mm}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .barra,.nav,.acoes-res,.nota-teste,.falta-msg,.aviso{display:none!important}
+  .dim,.caixa,.cartao,.res-cab,.fecha{box-shadow:none!important;break-inside:avoid;page-break-inside:avoid}
+  .arco{transition:none!important}
+  .data-res{display:block!important}
+}
+.data-res{display:none;text-align:center;font-size:12px;color:#8A8177;margin-top:6px}
+/* só avança com tudo respondido (05/11) */
+.nav .btn.falta{opacity:.5}
+.falta-msg{margin:12px 0 0;padding:12px 14px;border-radius:14px;background:#FFF4E8;border:1px solid #EBCB9E;color:#7A4E1D;font-size:14.5px;line-height:1.45}
+.falta-msg[hidden]{display:none}
+.pendente{border-radius:14px;outline:2px solid #E0A458;outline-offset:10px;animation:chama 1.2s ease 2}
+@keyframes chama{50%{outline-color:rgba(224,164,88,.35)}}
+@media (prefers-reduced-motion:reduce){.pendente{animation:none}}
+.aviso{position:fixed;left:50%;bottom:20px;z-index:60;transform:translate(-50%,30px);opacity:0;background:var(--forte);color:#fff;border-radius:14px;padding:12px 18px;font-size:14px;font-weight:700;box-shadow:0 14px 30px -14px rgba(0,0,0,.5);transition:transform .35s,opacity .3s;max-width:calc(100% - 32px);text-align:center;pointer-events:none}
+.aviso.on{transform:translate(-50%,0);opacity:1}
+html{scroll-padding-top:84px}
+.pendente{scroll-margin-top:96px}
+</style>
+</head>
+<body>
+<div class="casca" id="raiz"></div>
+<script>window.RENOVO_CFG = {"d":"limite","et":[0,0,1,0],"q":[[2,3,1],[2,0,1],[0,1,3],[2,3,0]],"fr":["Que bom que você está aqui, vai no seu tempo.","Olhe para isso sem curiosidade, sem se julgar.","Comece pequeno, um passo já conta","Estou com você neste caminho"],"p":"maduras","pn":"","ab":"Tende mulheres com problemas de baixa auto estima e que não conseguem ter um relacionamento amoroso de valor","tom":"objetiva","prof":"equilibrada","tempo":"media","fmt":"cartoes","n":"Meu limite, meu lugar","t":"Ana","c":"","w":"5511979520700","cor":"rosa"};</script>
+<script>
+(function () {
+  var M = {"nome":"Meu limite, meu lugar","descoberta":"Meu limite, meu lugar","promessa":"Para quem sempre foi o apoio da família: um lugar seu nas relações, com respeito e afeto.","planta":"broto","abertura":"Esta é a Meu limite, meu lugar. Em poucos passos você vai observar como isso aparece na sua rotina e escolher uma prática para a semana. Esta fase da vida traz novas perguntas sobre tempo, corpo e prioridades.","fechamento":"Ferramenta concluída. Leve suas respostas para a próxima sessão com Ana.","cards":[{"etapa":"Acolher","etapaId":"acolher","tipo":"Mensagem de abertura","titulo":"O custo do sim","texto":"Dizer sim para tudo costuma ter um custo. Aqui você vai olhar para isso sem culpa.","k":"perguntas","itens":["O que você teme que aconteça se colocar um limite?","Em qual relação você já se sente livre para ser você?","Como você se sente depois de aceitar algo que não queria?"],"transicao":"","frase":"Que bom que você está aqui, vai no seu tempo."},{"etapa":"Explorar","etapaId":"explorar","tipo":"Perguntas de reflexão","titulo":"O que se repete","texto":"Limites protegem o vínculo, não o afastam.","k":"perguntas","itens":["Onde você aprendeu que agradar era importante?","Que situação se repete e te deixa desconfortável?","O que você precisa nessas situações e não costuma pedir?"],"transicao":"Agora, observe com atenção.","frase":"Olhe para isso sem curiosidade, sem se julgar."},{"etapa":"Praticar","etapaId":"praticar","tipo":"Roteiro de conversa","titulo":"Frases de limite","texto":"Treine frases gentis e firmes.","k":"perguntas","itens":["Escreva com suas palavras: desta vez eu não vou conseguir, mas posso...","Como você diria não sem pedir desculpas?","Como você responderia se a pessoa insistir?"],"transicao":"Hora de colocar em prática.","frase":"Comece pequeno, um passo já conta"},{"etapa":"Consolidar","etapaId":"consolidar","tipo":"Compromisso da semana","titulo":"Meu limite da semana","texto":"Escolha um limite pequeno para praticar.","k":"perguntas","itens":["Como você vai cuidar de si depois?","O que vai te lembrar do porquê desse limite?","Qual limite você vai praticar nesta semana?"],"transicao":"Para fechar, defina o próximo passo.","frase":"Estou com você neste caminho"}],"cor":{"nome":"Rosa","forte":"#B5655A","claro":"#F4DFD9"},"tempo":"Média (10 a 20 min)","formato":"Sequência de cartões","tom":"Objetiva","prof":"Equilibrada","publico":"para mulheres 50+","rara":false,"citacao":"Tende mulheres com problemas de baixa auto estima e que não conseguem ter um relacionamento amoroso de valor"};
+  var RES = {"limite":{"escala":{"p":"Quanto você tem cedido além do que gostaria nas suas relações?","esq":"Quase nunca","dir":"Sempre"},"dims":[{"n":"Esforço para agradar","b":"Você tem conseguido não se anular para agradar.","m":"Em algumas relações você ainda cede além do que gostaria.","a":"Você tem cedido muito e deixado as suas necessidades de lado."},{"n":"Clareza dos seus limites","b":"Ainda é difícil saber onde fica o seu limite.","m":"Você reconhece seus limites, mas nem sempre a tempo.","a":"Você sabe bem onde fica o seu limite."},{"n":"Prática de dizer não","b":"Dizer não ainda é raro e custoso.","m":"Você já diz não em algumas situações.","a":"Dizer não com respeito já faz parte de como você se relaciona."}],"frases":[{"t":"Digo sim e depois me arrependo.","d":0,"p":3},{"t":"Tenho medo de decepcionar as pessoas.","d":0,"p":3},{"t":"Sinto que preciso explicar demais quando recuso algo.","d":0,"p":3},{"t":"Percebo no corpo quando algo passa do meu limite.","d":1,"p":3},{"t":"Já consegui recusar algo sem me sentir culpada.","d":1,"p":3}],"praticas":[{"t":"Pausa antes do sim","x":"Responder \"deixa eu ver e te falo\" em vez de aceitar na hora."},{"t":"Não curto","x":"Recusar sem justificar: \"Dessa vez não vou conseguir\"."},{"t":"Mapa da relação","x":"Escrever o que você aceita e o que não aceita em uma relação."}],"compromissos":["Pedir um tempo antes de responder a um pedido","Dizer um não pequeno nesta semana","Observar em qual relação eu mais cedo"],"passo":"Na próxima vez que alguém pedir algo, responda \"deixa eu ver e te falo\" e só decida depois."}};
+  var SENTIMENTOS = [{"id":"cansada","nome":"Cansada","d":[3,0,0],"ic":"\u003crect x=\"3\" y=\"8\" width=\"16\" height=\"9\" rx=\"2\"/>\u003cpath d=\"M21 11v3\"/>\u003cpath d=\"M6 12.5h3\"/>"},{"id":"agitada","nome":"Agitada","d":[3,0,0],"ic":"\u003cpath d=\"M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0\"/>\u003cpath d=\"M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0\"/>"},{"id":"dividida","nome":"Dividida","d":[2,1,0],"ic":"\u003cpath d=\"M12 3v18\"/>\u003cpath d=\"M8 8l-4 4 4 4\"/>\u003cpath d=\"M16 8l4 4-4 4\"/>"},{"id":"serena","nome":"Serena","d":[0,3,0],"ic":"\u003cpath d=\"M5 19c0-8 6-14 14-14 0 8-6 14-14 14z\"/>\u003cpath d=\"M5 19l8-8\"/>"}];
+  var TOM_RESULTADO = {"objetiva":{"abre":"Aqui está o seu retrato de hoje, em três pontos.","fecha":"Leve este retrato para a próxima sessão."}};
+  var MAX = [22,14,15];
+  var planta = function planta(tipo, cor, claro) {
+    cor = cor || '#5E7E5F'; claro = claro || '#E3EADF';
+    var folha = function (x, y, r, s) {
+      return '<g transform="translate(' + x + ' ' + y + ') rotate(' + r + ') scale(' + s + ')"><path d="M0 0C14 -10 34 -10 46 0C34 10 14 10 0 0Z" fill="' + claro + '" stroke="' + cor + '" stroke-width="1.6"/><path d="M2 0H42" stroke="' + cor + '" stroke-width="1.1" opacity=".7"/></g>';
+    };
+    var g = '';
+    if (tipo === 'flor') {
+      g += '<path d="M100 196C100 150 98 120 100 84" stroke="' + cor + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      g += folha(100, 176, -150, 1.0) + folha(100, 154, -30, .9); // folhas mais baixas: não encostam nas pétalas
+      for (var i = 0; i < 6; i++) g += '<ellipse cx="100" cy="62" rx="10" ry="24" fill="' + claro + '" stroke="' + cor + '" stroke-width="1.5" transform="rotate(' + (i * 60) + ' 100 84)"/>';
+      g += '<circle cx="100" cy="84" r="8" fill="' + cor + '" opacity=".85"/>';
+    } else if (tipo === 'broto') {
+      g += '<path d="M100 196C100 160 100 130 100 104" stroke="' + cor + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      g += folha(100, 108, -125, 1.25) + folha(100, 108, -55, 1.25) + folha(100, 150, -160, .8) + folha(100, 168, -20, .75);
+      g += '<circle cx="100" cy="100" r="5" fill="' + cor + '"/>';
+    } else if (tipo === 'folhas') {
+      g += '<path d="M100 196C96 150 104 110 98 40" stroke="' + cor + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      [[99, 60, -120, .9], [99, 60, -60, .9], [100, 92, -140, 1.1], [100, 92, -40, 1.1], [101, 126, -150, 1.2], [101, 126, -30, 1.2], [100, 160, -160, 1], [100, 160, -20, 1]]
+        .forEach(function (f) { g += folha(f[0], f[1], f[2], f[3]); });
+    } else {
+      g += '<path d="M60 196C80 160 100 110 140 50" stroke="' + cor + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      [[82, 160, -110, 1.1], [92, 140, -10, 1], [104, 116, -120, 1.15], [114, 98, -20, 1], [126, 74, -125, 1], [133, 62, -30, .85]]
+        .forEach(function (f) { g += folha(f[0], f[1], f[2], f[3]); });
+    }
+    return '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + g + '</svg>';
+  };
+  var pontuar = function pontuar(dId, r) {
+    var c = RES[dId]; if (!c) return null;
+    var s = [0, 0, 0];
+    if (typeof r.escala === 'number') s[0] += r.escala;
+    var sent = SENTIMENTOS.filter(function (x) { return x.id === r.sent; })[0];
+    if (sent) { s[0] += sent.d[0]; s[1] += sent.d[1]; }
+    (r.frases || []).forEach(function (j) { var f = c.frases[j]; if (f) s[f.d] += f.p; });
+    if (r.fez === 'sim') s[2] += 10; else if (r.fez === 'agora') s[2] += 6; else if (r.fez === 'nao') s[2] += 2;
+    if (typeof r.conf === 'number') { s[1] += r.conf / 2; s[2] += r.conf / 2; }
+    return c.dims.map(function (d, i) {
+      var pct = Math.max(0, Math.min(100, Math.round(s[i] / MAX[i] * 100)));
+      var faixa = pct <= 33 ? 'b' : pct <= 66 ? 'm' : 'a';
+      return { n: d.n, pct: pct, faixa: faixa, rotulo: { b: 'Baixa', m: 'Média', a: 'Alta' }[faixa], leitura: d[faixa], peso: i === 0 };
+    });
+  };
+  window.RENOVO = { montar: function () { return M; }, RES: RES, SENTIMENTOS: SENTIMENTOS, TOM_RESULTADO: TOM_RESULTADO, planta: planta, pontuar: pontuar };
+})();
+</script>
+
+
+<script>
+(function () {
+  var R = window.RENOVO, raiz = document.getElementById('raiz');
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var VISTO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  function ic(path) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>'; }
+  var IC_PRAT = ['<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>', '<path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/>', '<path d="M4 12h16"/><path d="M14 6l6 6-6 6"/>'];
+  var IC_COMP = ['<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/>', '<path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/>', '<path d="M6 4h12v16l-6-4-6 4z"/>'];
+
+  // Arquivo baixado: a ferramenta vem dentro (window.RENOVO_CFG). Link do estúdio: vem no #.
+  var cfg = window.RENOVO_CFG || null, hash = cfg ? '' : location.hash.slice(1);
+  if (!cfg) try { cfg = JSON.parse(decodeURIComponent(escape(atob(hash.replace(/-/g, '+').replace(/_/g, '/'))))); } catch (e) { cfg = null; }
+  var m = cfg && R.montar(cfg);
+  if (!m) { raiz.innerHTML = '<p class="erro">Este link não está completo. Peça um novo link para a sua psicóloga.</p>'; return; }
+  var C = R.RES[cfg.d];
+  document.title = m.nome;
+  document.documentElement.style.setProperty('--forte', m.cor.forte);
+  document.documentElement.style.setProperty('--claro', m.cor.claro);
+
+  // Modo teste (dentro do Estúdio): respostas só nesta aba, apagadas ao sair do teste; nada de WhatsApp.
+  var qs = new URLSearchParams(location.search), TESTE = qs.get('teste') === '1';
+  var CH = TESTE ? 'renovo-teste' : 'renovo-cliente-' + (window.RENOVO_CFG ? String(cfg.d) + '-' + String(cfg.n || '').slice(0, 30) : hash.slice(0, 40)), resp = {};
+  var loja = null; try { loja = TESTE ? window.sessionStorage : window.localStorage; } catch (e) { loja = null; }
+  try { resp = JSON.parse(loja.getItem(CH)) || {}; } catch (e) { resp = {}; }
+  resp.x = resp.x || {};
+  function guardar() { try { loja.setItem(CH, JSON.stringify(resp)); } catch (e) {} }
+  var total = m.cards.length + 2, i = resp._i || 0;
+  if (TESTE && qs.get('i') !== null) { i = Math.max(0, Math.min(total - 1, +qs.get('i') || 0)); }
+  i = Math.max(0, Math.min(total - 1, +i || 0));
+  var X = resp.x;
+  var assinatura = 'com ' + esc(cfg.t) + ', psicóloga' + (cfg.c ? ' · ' + esc(cfg.c) : '');
+
+  function contar() {
+    var perg = 0, feitas = 0;
+    m.cards.forEach(function (c, ci) { c.itens.forEach(function (t, j) { perg++; var v = (resp['c' + ci] || {})[j]; if (v === true || typeof v === 'number' || (typeof v === 'string' && v.trim())) feitas++; }); });
+    if (C) { perg += 5; feitas += (typeof X.escala === 'number' ? 1 : 0) + (X.sent ? 1 : 0) + ((X.frases || []).length ? 1 : 0) + (X.prat != null ? 1 : 0) + (X.comp != null ? 1 : 0); }
+    return { perg: perg, feitas: feitas };
+  }
+  function avisarEstudio() {
+    if (!TESTE || window.parent === window) return;
+    var k = contar();
+    try { window.parent.postMessage({ tipo: 'renovo-teste', i: i, total: total, etapa: i === 0 ? 'capa' : i <= m.cards.length ? m.cards[i - 1].etapa : 'fim', idx: i >= 1 && i <= m.cards.length ? i - 1 : -1, perguntas: k.perg, respondidas: k.feitas, fim: i === total - 1 }, location.origin); } catch (e) {}
+  }
+  function avisarAltura() {
+    if (window.parent === window) return;
+    try { window.parent.postMessage({ tipo: 'renovo-altura', h: document.documentElement.scrollHeight }, location.origin); } catch (e) {}
+  }
+
+  function barra() {
+    var rot = i === 0 ? 'Início' : i <= m.cards.length ? 'Etapa ' + i + ' de ' + m.cards.length : 'Seu resultado';
+    return '<div class="barra"><div class="barra-top"><span>' + esc(m.nome) + '</span><span>' + rot + '</span></div><div class="trilho"><i style="transform:scaleX(' + ((i + 1) / total) + ')"></i></div></div>';
+  }
+
+  /* interações por etapa */
+  function escala(campo, p, esq, dir) {
+    var v = typeof X[campo] === 'number' ? X[campo] : 5, mexeu = typeof X[campo] === 'number';
+    return '<div class="escala' + (mexeu ? '' : ' nao-mexeu') + '" data-escala="' + campo + '"><div class="valor"><b>' + v + '</b><span>de 10</span></div>' +
+      '<input type="range" min="0" max="10" step="1" value="' + v + '" style="--p:' + v * 10 + '%" aria-label="' + esc(p) + '"><div class="pontas"><span>' + esc(esq) + '</span><span>' + esc(dir) + '</span></div>' +
+      '<div class="termo"><i style="width:' + v * 10 + '%"></i></div></div>';
+  }
+  function interacao(ci) {
+    if (!C) return '';
+    var id = m.cards[ci].etapaId;
+    if (id === 'acolher') {
+      return '<div class="bloco"><h3>' + esc(C.escala.p) + '</h3><p class="dica">Arraste o controle até o ponto que mais combina com você agora.</p>' + escala('escala', C.escala.p, C.escala.esq, C.escala.dir) + '</div>' +
+        '<div class="bloco"><h3>Como você está chegando hoje?</h3><p class="dica">Escolha a palavra mais próxima.</p><div class="opcoes quatro">' +
+        R.SENTIMENTOS.map(function (s) { return '<button class="op' + (X.sent === s.id ? ' sel' : '') + '" data-sent="' + s.id + '"><span class="ic">' + ic(s.ic) + '</span><b>' + s.nome + '</b></button>'; }).join('') + '</div></div>';
+    }
+    if (id === 'explorar') {
+      var marc = X.frases || [];
+      return '<div class="bloco"><h3>O que tem a ver com você?</h3><p class="dica">Toque nas frases em que você se reconhece. Pode marcar quantas quiser.</p><div class="frases">' +
+        C.frases.map(function (f, j) { return '<button class="fr' + (marc.indexOf(j) >= 0 ? ' sel' : '') + '" data-fr="' + j + '"><span class="ck">' + VISTO + '</span><span>' + esc(f.t) + '</span></button>'; }).join('') +
+        '</div><p class="contador" id="contador">' + contador(marc.length) + '</p></div>';
+    }
+    if (id === 'praticar') {
+      return '<div class="bloco"><h3>Escolha a sua prática</h3><p class="dica">Uma só, a que parece possível agora.</p><div class="opcoes tres">' +
+        C.praticas.map(function (p, j) { return '<button class="op' + (X.prat === j ? ' sel' : '') + '" data-prat="' + j + '"><span class="ic">' + ic(IC_PRAT[j]) + '</span><span><b>' + esc(p.t) + '</b><small>' + esc(p.x) + '</small></span></button>'; }).join('') + '</div>' +
+        '<div id="fez"' + (X.prat == null ? ' hidden' : '') + '><h3 style="margin-top:24px">Você já fez?</h3><div class="seg">' +
+        [['sim', 'Já fiz'], ['agora', 'Vou fazer agora'], ['nao', 'Ainda não']].map(function (o) { return '<button class="' + (X.fez === o[0] ? 'sel' : '') + '" data-fez="' + o[0] + '">' + o[1] + '</button>'; }).join('') + '</div></div></div>';
+    }
+    if (id === 'consolidar') {
+      return '<div class="bloco"><h3>Escolha o seu compromisso da semana</h3><div class="opcoes">' +
+        C.compromissos.map(function (t, j) { return '<button class="op' + (X.comp === j ? ' sel' : '') + '" data-comp="' + j + '"><span class="ic">' + ic(IC_COMP[j]) + '</span><b>' + esc(t) + '</b></button>'; }).join('') + '</div></div>' +
+        '<div class="bloco"><h3>Quanto você confia que vai cumprir?</h3><p class="dica">Seja sincera: isso ajuda a ajustar o compromisso.</p>' + escala('conf', 'Confiança', 'Pouco', 'Muito') + '</div>';
+    }
+    return '';
+  }
+  // pergunta de nota (De 0 a 10, ...) vira barra de arrastar, nunca caixa de texto
+  function ehNota(t) { return /^de 0 a 10\b/i.test(String(t || '').trim()); }
+  function contador(n) { return n ? 'Você se reconheceu em ' + n + (n === 1 ? ' frase' : ' frases') : 'Nenhuma frase marcada ainda'; }
+
+  function perguntas(c, k) {
+    if (!c.itens.length) return '';
+    return '<div class="bloco"><h3>' + (c.k === 'passos' ? 'Passo a passo' : 'Para escrever') + '</h3><div class="itens">' +
+      c.itens.map(function (t, j) {
+        var v = (resp[k] || {})[j];
+        if (c.k === 'passos') return '<label class="passo' + (v ? ' feito' : '') + '"><input type="checkbox" data-k="' + k + '" data-j="' + j + '"' + (v ? ' checked' : '') + '><span>' + esc(t) + '</span></label>';
+        if (ehNota(t)) {
+          var n = typeof v === 'number' ? v : 5;
+          return '<div class="item"><label>' + esc(t) + '</label><div class="escala' + (typeof v === 'number' ? '' : ' nao-mexeu') + '" data-nota-k="' + k + '" data-nota-j="' + j + '"><div class="valor"><b>' + n + '</b><span>de 10</span></div>' +
+            '<input type="range" min="0" max="10" step="1" value="' + n + '" style="--p:' + n * 10 + '%" aria-label="' + esc(t) + '"><div class="pontas"><span>0</span><span>10</span></div><div class="termo"><i style="width:' + n * 10 + '%"></i></div></div></div>';
+        }
+        return '<div class="item"><label for="r' + k + j + '">' + esc(t) + '</label><textarea id="r' + k + j + '" data-k="' + k + '" data-j="' + j + '" placeholder="Escreva aqui, do seu jeito">' + esc(v || '') + '</textarea></div>';
+      }).join('') + '</div><p class="salvo" id="salvo"></p></div>';
+  }
+
+  function anel(pct, peso) {
+    var r = 40, cc = 2 * Math.PI * r;
+    return '<div class="anel' + (peso ? ' peso' : '') + '"><svg viewBox="0 0 96 96"><circle class="fundo" cx="48" cy="48" r="' + r + '" fill="none" stroke-width="9"/>' +
+      '<circle class="arco" cx="48" cy="48" r="' + r + '" fill="none" stroke-width="9" stroke-dasharray="' + cc.toFixed(1) + '" stroke-dashoffset="' + cc.toFixed(1) + '" data-alvo="' + (cc * (1 - pct / 100)).toFixed(1) + '"/></svg><b>' + pct + '%</b></div>';
+  }
+  function resultado() {
+    var dims = R.pontuar(cfg.d, X) || [], tom = R.TOM_RESULTADO[cfg.tom] || R.TOM_RESULTADO.equilibrada;
+    var escritas = [];
+    m.cards.forEach(function (c, ci) { if (c.k === 'passos') return; c.itens.forEach(function (t, j) { var v = (resp['c' + ci] || {})[j]; if (typeof v === 'string' && v.trim()) escritas.push([t, v.trim()]); else if (typeof v === 'number' && ehNota(t)) escritas.push([t, v + ' de 10']); }); });
+    var prat = C && X.prat != null ? C.praticas[X.prat] : null, comp = C && X.comp != null ? C.compromissos[X.comp] : null;
+    var w = (cfg.w || '').replace(/\D/g, '').replace(/^0+/, ''); if (w && w.length <= 11 && !cfg.wi) w = '55' + w; // wi: o número já vem com o país (12/11)
+    var msg = 'Oi, ' + cfg.t + '! Terminei a ' + m.nome + '. Meu resultado: ' + dims.map(function (d) { return d.n + ' ' + d.rotulo.toLowerCase(); }).join('; ') + '.' + (comp ? ' Meu compromisso da semana: ' + comp + '.' : '');
+    var h = '<div class="res-cab"><div class="ilus">' + R.planta(m.planta, m.cor.forte, m.cor.claro) + '</div><small>' + esc(m.nome) + '</small><h1>O seu resultado</h1><p>' + esc(tom.abre) + '</p><span class="data-res">Resultado de ' + new Date().toLocaleDateString('pt-BR') + '</span></div>' +
+      '<div class="dims">' + dims.map(function (d) { return '<div class="dim">' + anel(d.pct, d.peso) + '<div><h3>' + esc(d.n) + '</h3><span class="faixa">' + d.rotulo + '</span><p>' + esc(d.leitura) + '</p></div></div>'; }).join('') + '</div>';
+    if (prat || comp || X.sent) {
+      var s = R.SENTIMENTOS.filter(function (x) { return x.id === X.sent; })[0];
+      h += '<div class="caixa"><h3>O que você escolheu</h3>' +
+        (s ? '<div class="lin"><span>Chegou</span>' + s.nome + (typeof X.escala === 'number' ? ', com ' + X.escala + ' de 10' : '') + '</div>' : '') +
+        (prat ? '<div class="lin"><span>Prática</span>' + esc(prat.t) + (X.fez ? ' · ' + { sim: 'já fez', agora: 'vai fazer agora', nao: 'ainda não fez' }[X.fez] : '') + '</div>' : '') +
+        (comp ? '<div class="lin"><span>Compromisso</span>' + esc(comp) + (typeof X.conf === 'number' ? ' · confiança ' + X.conf + ' de 10' : '') + '</div>' : '') + '</div>';
+    }
+    if (C) h += '<div class="caixa passo-semana"><h3>Seu próximo passo</h3><p>' + esc(C.passo) + '</p></div>';
+    if (escritas.length) h += '<div class="caixa escreveu"><h3>O que você escreveu</h3><dl>' + escritas.map(function (e) { return '<dt>' + esc(e[0]) + '</dt><dd>' + esc(e[1]) + '</dd>'; }).join('') + '</dl></div>';
+    h += '<p class="fecha">' + esc(tom.fecha) + ' ' + esc(m.fechamento) + '</p><div class="acoes-res">' +
+      (TESTE ? '<span class="btn desligado" aria-disabled="true">Falar com ' + esc(cfg.t) + ' no WhatsApp</span>' : w ? '<a class="btn" href="https://wa.me/' + w + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Falar com ' + esc(cfg.t) + ' no WhatsApp</a>' : '') +
+      '<button class="btn claro" id="salvar-res">Salvar meu resultado</button><button class="btn claro" data-ir="1">Rever respostas</button></div>' +
+      (TESTE ? '<small class="nota-teste">No teste o WhatsApp fica desligado. Para a sua cliente, ele abre o seu WhatsApp já com o resumo do resultado.</small>' : '');
+    return h;
+  }
+
+  function tela() {
+    if (!TESTE && i > 1) { var inc = primeiraIncompleta(); if (inc >= 0 && i > inc + 1) i = inc + 1; }
+    resp._i = i; guardar();
+    var h = barra();
+    if (i === 0) {
+      h += '<div class="capa"><div class="ilus">' + R.planta(m.planta, m.cor.forte, '#fff') + '</div><small>Jornada</small><h1>' + esc(m.nome) + '</h1>' + (m.publico ? '<em class="pub">' + esc(m.publico) + '</em>' : '') + '<p>' + assinatura + '</p></div>' +
+        (m.citacao ? '<p class="cita">Talvez você se reconheça nisso: <q>' + esc(m.citacao) + '</q></p>' : '') + '<p class="texto-abre">' + esc(m.abertura) + '</p>' +
+        '<div class="como"><div><b>4</b>etapas</div><div><b>' + esc(((m.tempo || '').replace(/^[^(]*\(|\)$/g, '') || '10 a 20 min').replace(/\s*min$/, '')) + '</b>minutos</div><div><b>1</b>resultado no fim</div></div>' +
+        '<div class="nav"><button class="btn" data-ir="1">Começar</button></div>';
+    } else if (i <= m.cards.length) {
+      var c = m.cards[i - 1], k = 'c' + (i - 1);
+      h += '<div class="cartao"><span class="etiqueta">' + c.etapa + '</span>' + (c.transicao ? '<p class="trans">' + esc(c.transicao) + '</p>' : '') +
+        '<h2>' + esc(c.titulo) + '</h2><p class="intro">' + esc(c.texto) + '</p>' + (c.frase ? '<p class="frase-t"><q>' + esc(c.frase) + '</q><span>' + esc(cfg.t) + '</span></p>' : '') +
+        interacao(i - 1) + perguntas(c, k) +
+        '<div class="nav"><button class="btn claro" data-ir="' + (i - 1) + '">Voltar</button><button class="btn" id="seguir" data-ir="' + (i + 1) + '">' + (i === m.cards.length ? 'Ver meu resultado' : 'Continuar') + '</button></div>' +
+        '<p class="falta-msg" id="falta" role="status" hidden></p></div>';
+    } else {
+      h += resultado();
+    }
+    h += '<p class="aviso-legal">Esta ferramenta é um apoio ao seu processo e não substitui o acompanhamento profissional nem é um diagnóstico.</p><p class="assina">' + assinatura + '</p>';
+    raiz.innerHTML = h;
+    ligar(); atualizarSeguir();
+    if (i === total - 1) requestAnimationFrame(function () { setTimeout(function () { Array.prototype.forEach.call(raiz.querySelectorAll('.arco'), function (a) { a.style.strokeDashoffset = a.dataset.alvo; }); }, 120); });
+    avisarEstudio(); setTimeout(avisarAltura, 60);
+  }
+
+  // O que ainda falta responder no cartão ci (nada passa em branco; a nota só conta se ela mexeu na barra).
+  function pendentes(ci) {
+    var f = [], c = m.cards[ci], k = 'c' + ci, id = c.etapaId, r = resp[k] || {};
+    if (C) {
+      if (id === 'acolher') { if (typeof X.escala !== 'number') f.push(['[data-escala="escala"]', 'arraste a barra da nota']); if (!X.sent) f.push(['[data-sent]', 'escolha como está chegando']); }
+      if (id === 'explorar' && !(X.frases || []).length) f.push(['[data-fr]', 'marque pelo menos uma frase']);
+      if (id === 'praticar') { if (X.prat == null) f.push(['[data-prat]', 'escolha a sua prática']); else if (!X.fez) f.push(['[data-fez]', 'diga se já fez']); }
+      if (id === 'consolidar') { if (X.comp == null) f.push(['[data-comp]', 'escolha o seu compromisso']); if (typeof X.conf !== 'number') f.push(['[data-escala="conf"]', 'arraste a barra da confiança']); }
+    }
+    c.itens.forEach(function (t, j) {
+      var v = r[j];
+      if (c.k === 'passos') { if (v !== true) f.push(['[data-k="' + k + '"][data-j="' + j + '"]', 'marque todos os passos']); }
+      else if (ehNota(t)) { if (typeof v !== 'number') f.push(['[data-nota-k="' + k + '"][data-nota-j="' + j + '"]', 'arraste a barra da nota']); }
+      else if (typeof v !== 'string' || v.trim().length < 2) f.push(['[data-k="' + k + '"][data-j="' + j + '"]', 'responda todas as perguntas']);
+    });
+    return f;
+  }
+  function primeiraIncompleta() { for (var ci = 0; ci < m.cards.length; ci++) if (pendentes(ci).length) return ci; return -1; }
+  function alvoDe(sel) { var el = raiz.querySelector(sel); return el && (el.closest('.bloco') || el.closest('.item') || el); }
+  function atualizarSeguir() {
+    var bt = document.getElementById('seguir'); if (!bt) return;
+    var f = pendentes(i - 1); bt.classList.toggle('falta', f.length > 0);
+    var msg = document.getElementById('falta'); if (msg && !f.length) msg.hidden = true;
+    Array.prototype.forEach.call(raiz.querySelectorAll('.pendente'), function (el) { el.classList.remove('pendente'); });
+  }
+  function cobrar() {
+    var f = pendentes(i - 1), msg = document.getElementById('falta'), vistos = [];
+    var lista = f.map(function (x) { return x[1]; }).filter(function (t) { if (vistos.indexOf(t) >= 0) return false; vistos.push(t); return true; });
+    msg.textContent = 'Para continuar, ' + lista.join(', ') + '.'; msg.hidden = false;
+    Array.prototype.forEach.call(raiz.querySelectorAll('.pendente'), function (el) { el.classList.remove('pendente'); });
+    var alvo = alvoDe(f[0][0]); if (alvo) { void alvo.offsetWidth; alvo.classList.add('pendente'); alvo.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }
+  // Depois de trocar de tela, ignora toques por um instante: um toque duplo não pula etapa nem marca a resposta da tela seguinte.
+  var travadoAte = 0;
+  function travado() { return Date.now() < travadoAte; }
+
+  function avisoCli(t) {
+    var a = document.getElementById('aviso-cli');
+    if (!a) { a = document.createElement('div'); a.id = 'aviso-cli'; a.className = 'aviso'; a.setAttribute('role', 'status'); document.body.appendChild(a); }
+    a.textContent = t; a.classList.add('on'); clearTimeout(a._t); a._t = setTimeout(function () { a.classList.remove('on'); }, 3200);
+  }
+  function marcarSalvo() { var s = document.getElementById('salvo'); if (s) s.textContent = TESTE ? 'Guardado só durante o teste' : 'Salvo neste aparelho'; }
+  function ligar() {
+    Array.prototype.forEach.call(raiz.querySelectorAll('[data-k]'), function (el) {
+      var ev = el.type === 'checkbox' ? 'change' : 'input';
+      el.addEventListener(ev, function () {
+        var k = el.dataset.k; resp[k] = resp[k] || {};
+        resp[k][el.dataset.j] = el.type === 'checkbox' ? el.checked : el.value; guardar();
+        if (el.type === 'checkbox') el.closest('.passo').classList.toggle('feito', el.checked);
+        marcarSalvo(); avisarEstudio(); atualizarSeguir();
+      });
+    });
+    Array.prototype.forEach.call(raiz.querySelectorAll('[data-nota-k]'), function (box) {
+      var k = box.dataset.notaK, j = box.dataset.notaJ, inp = box.querySelector('input'), b = box.querySelector('.valor b'), t = box.querySelector('.termo i');
+      var marcar = function () { if (typeof (resp[k] || {})[j] !== 'number') inp.dispatchEvent(new Event('input')); };
+      inp.addEventListener('change', marcar); inp.addEventListener('pointerup', marcar); inp.addEventListener('touchend', marcar); inp.addEventListener('keyup', marcar);
+      inp.addEventListener('input', function () {
+        var v = +inp.value; resp[k] = resp[k] || {}; resp[k][j] = v; guardar(); box.classList.remove('nao-mexeu');
+        b.textContent = v; inp.style.setProperty('--p', v * 10 + '%'); t.style.width = v * 10 + '%';
+        marcarSalvo(); avisarEstudio(); atualizarSeguir();
+      });
+    });
+    Array.prototype.forEach.call(raiz.querySelectorAll('[data-escala]'), function (box) {
+      var campo = box.dataset.escala, inp = box.querySelector('input'), b = box.querySelector('.valor b'), t = box.querySelector('.termo i');
+      // tocar na barra já vale como resposta (se ela concorda com o 5, não precisa arrastar)
+      var marcar = function () { if (typeof X[campo] !== 'number') inp.dispatchEvent(new Event('input')); };
+      inp.addEventListener('change', marcar); inp.addEventListener('pointerup', marcar); inp.addEventListener('touchend', marcar); inp.addEventListener('keyup', marcar);
+      inp.addEventListener('input', function () {
+        var v = +inp.value; X[campo] = v; guardar(); box.classList.remove('nao-mexeu');
+        b.textContent = v; inp.style.setProperty('--p', v * 10 + '%'); t.style.width = v * 10 + '%';
+        b.style.transform = 'scale(1.12)'; setTimeout(function () { b.style.transform = ''; }, 160);
+        avisarEstudio(); atualizarSeguir();
+      });
+    });
+    var un = function (attr, campo, extra) {
+      Array.prototype.forEach.call(raiz.querySelectorAll('[' + attr + ']'), function (bt) {
+        bt.addEventListener('click', function () {
+          if (travado()) return;
+          var v = bt.getAttribute(attr); X[campo] = /^\d+$/.test(v) ? +v : v; guardar();
+          Array.prototype.forEach.call(raiz.querySelectorAll('[' + attr + ']'), function (o) { o.classList.toggle('sel', o === bt); });
+          if (extra) extra(); avisarEstudio(); atualizarSeguir(); setTimeout(avisarAltura, 30);
+        });
+      });
+    };
+    un('data-sent', 'sent'); un('data-comp', 'comp'); un('data-fez', 'fez');
+    un('data-prat', 'prat', function () { var f = document.getElementById('fez'); if (f) f.hidden = false; });
+    Array.prototype.forEach.call(raiz.querySelectorAll('[data-fr]'), function (bt) {
+      bt.addEventListener('click', function () {
+        if (travado()) return;
+        var j = +bt.dataset.fr, l = X.frases || (X.frases = []), p = l.indexOf(j);
+        if (p >= 0) l.splice(p, 1); else l.push(j);
+        bt.classList.toggle('sel', p < 0); guardar();
+        document.getElementById('contador').textContent = contador(l.length); avisarEstudio(); atualizarSeguir();
+      });
+    });
+    var sv = document.getElementById('salvar-res'); if (sv) sv.addEventListener('click', function () {
+      if (typeof window.print !== 'function' || /Instagram|FBAN|FBAV|FB_IAB|WhatsApp|Line\/|MicroMessenger/i.test(navigator.userAgent || '')) { avisoCli('Para salvar o PDF, abra este link no Chrome ou no Safari.'); return; }
+      Array.prototype.forEach.call(raiz.querySelectorAll('.arco'), function (a) { a.style.strokeDashoffset = a.dataset.alvo; });
+      avisoCli('Na janela que abrir, escolha "Salvar como PDF".');
+      var foi = false, vai = function () { if (foi) return; foi = true; setTimeout(function () { window.print(); }, 200); };
+      setTimeout(vai, 1500); if (document.fonts && document.fonts.ready) document.fonts.ready.then(vai, vai); else vai();
+    });
+  }
+
+  // cada tela nova começa do topo, logo abaixo da barra (salto direto: a subida suave para no meio no iPhone)
+  function topo() { window.scrollTo(0, 0); requestAnimationFrame(function () { window.scrollTo(0, 0); }); setTimeout(function () { window.scrollTo(0, 0); }, 80); }
+  raiz.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ir]'); if (!b) return;
+    if (travado()) return;
+    var para = +b.dataset.ir;
+    if (para > i && i >= 1 && i <= m.cards.length && pendentes(i - 1).length) { cobrar(); return; }
+    if (para > i && para > 1) { var inc = primeiraIncompleta(); if (inc >= 0 && para > inc + 1) para = inc + 1; }
+    i = para; travadoAte = Date.now() + 550; tela(); topo();
+  });
+  window.addEventListener('message', function (e) { if (e.origin !== location.origin || !e.data || e.data.tipo !== 'renovo-ir') return; i = +e.data.i || 0; tela(); window.scrollTo(0, 0); });
+  if (window.ResizeObserver) new ResizeObserver(avisarAltura).observe(document.body);
+  tela();
+})();
+</script>
+</body>
+</html>
